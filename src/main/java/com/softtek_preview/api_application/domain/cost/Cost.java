@@ -16,16 +16,13 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class Cost {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(name = "exercicio", nullable = false)
     private int exercicio;
 
     @Column(name = "periodo", nullable = false)
     private int periodo;
 
+    @Id
     @Column(name = "codigo_at", nullable = false)
     private String codigoAt;
 

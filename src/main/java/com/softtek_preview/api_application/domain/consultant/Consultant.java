@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @Table(name = "consultants")
 @Entity
@@ -20,10 +21,8 @@ public class Consultant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(name = "is", nullable = false)
-    private String is;
+    private UUID is;
 
     @Column(name = "nome", nullable = false)
     private String nome;
