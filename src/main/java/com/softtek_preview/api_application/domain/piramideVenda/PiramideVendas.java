@@ -14,18 +14,18 @@ import lombok.Setter;
 @NoArgsConstructor
 public class PiramideVendas {
 
-    @Column(name = "expert", nullable = false)
+    @Column(name = "expert_piramide", nullable = false)
     private double expert;
 
-    @Column(name = "senior", nullable = false)
+    @Column(name = "senior_piramide", nullable = false)
     private double senior;
 
-    @Column(name = "pleno", nullable = false)
+    @Column(name = "pleno_piramide", nullable = false)
     private double pleno;
 
-    @Column(name = "junior", nullable = false)
+    @Column(name = "junior_piramide", nullable = false)
     private double junior;
 
-    @Column(name = "estagiario", nullable = false)
+    @Column(name = "estagiario_piramide", nullable = false)
     private double estagiario;
 }

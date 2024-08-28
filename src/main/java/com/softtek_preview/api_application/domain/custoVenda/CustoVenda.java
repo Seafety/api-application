@@ -16,21 +16,21 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class CustoVenda {
 
-    @Column(name = "expert", nullable = false)
+    @Column(name = "expert_custo", nullable = false)
     private BigDecimal expert;
 
-    @Column(name = "senior", nullable = false)
+    @Column(name = "senior_custo", nullable = false)
     private BigDecimal senior;
 
-    @Column(name = "pleno", nullable = false)
+    @Column(name = "pleno_custo", nullable = false)
     private BigDecimal pleno;
 
-    @Column(name = "junior", nullable = false)
+    @Column(name = "junior_custo", nullable = false)
     private BigDecimal junior;
 
-    @Column(name = "estagiario", nullable = false)
+    @Column(name = "estagiario_custo", nullable = false)
     private BigDecimal estagiario;
 
-    @Column(name = "gestao", nullable = false)
+    @Column(name = "gestao_custo", nullable = false)
     private BigDecimal gestao;
 }

@@ -21,8 +21,8 @@ public class Consultant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "is", nullable = false)
-    private UUID is;
+    @Column(name = "id", nullable = false)
+    private UUID id;
 
     @Column(name = "nome", nullable = false)
     private String nome;
