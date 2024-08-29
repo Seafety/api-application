@@ -8,7 +8,7 @@ CREATE TABLE consultant (
     ausencia_ini DATE,
     ausencia_fin DATE,
     ausencia_tipo VARCHAR(50),
-    FOREIGN KEY (codigo_at) REFERENCES costs(codigo_at) ON DELETE CASCADE
+    FOREIGN KEY (codigo_at) REFERENCES costs(codigo_at)
 );
 
 CREATE TABLE consultant_especialidade (
