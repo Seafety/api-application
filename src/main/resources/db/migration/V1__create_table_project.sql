@@ -15,12 +15,12 @@ CREATE TABLE project (
     ativo BOOLEAN NOT NULL,
 
     -- Campos de PiramideVendas
-    expert_piramide DOUBLE PRECISION NOT NULL,
-    senior_piramide DOUBLE PRECISION NOT NULL,
-    pleno_piramide DOUBLE PRECISION NOT NULL,
-    junior_piramide DOUBLE PRECISION NOT NULL,
-    estagiario_piramide DOUBLE PRECISION NOT NULL,
-
+    expert_piramide DECIMAL(15, 2) NOT NULL,
+    senior_piramide DECIMAL(15, 2) NOT NULL,
+    pleno_piramide DECIMAL(15, 2) NOT NULL,
+    junior_piramide DECIMAL(15, 2) NOT NULL,
+    estagiario_piramide DECIMAL(15, 2) NOT NULL,
+    gestao_piramide DECIMAL(15, 2) NOT NULL,
     -- Campos de CustoVenda
     expert_custo DECIMAL(15, 2) NOT NULL,
     senior_custo DECIMAL(15, 2) NOT NULL,
