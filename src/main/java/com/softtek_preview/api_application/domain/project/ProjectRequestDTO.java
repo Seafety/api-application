@@ -1,12 +1,13 @@
 package com.softtek_preview.api_application.domain.project;
 
-import com.softtek_preview.api_application.domain.custoVenda.CustoVendaRequestDTO;
-import com.softtek_preview.api_application.domain.piramideVenda.PiramideVendasRequestDTO;
+
+import com.softtek_preview.api_application.domain.custoVenda.CustoVendaDTO;
+import com.softtek_preview.api_application.domain.piramideVenda.PiramideVendaDTO;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-public record ProjectResquestDTO(
+public record ProjectRequestDTO(
         String projeto,
         String descricao,
         String tipoContrato,
@@ -14,8 +15,8 @@ public record ProjectResquestDTO(
         List<String> tipoDemanda,
         int baseline,
         BigDecimal valorContrato,
-        PiramideVendasRequestDTO piramideVendas,
-        CustoVendaRequestDTO custoVenda,
+        PiramideVendaDTO piramideVendas,
+        CustoVendaDTO custoVenda,
         int horasGestao,
         int baselineConsumido,
         LocalDate inicioContrato,
