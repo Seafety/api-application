@@ -1,7 +1,9 @@
 package com.softtek_preview.api_application.domain.project;
 
 import com.softtek_preview.api_application.domain.custoVenda.CustoVenda;
-import com.softtek_preview.api_application.domain.piramideVenda.PiramideVendas;
+import com.softtek_preview.api_application.domain.piramideVenda.PiramideVenda;
+import com.softtek_preview.api_application.service.CustoVendaService;
+import com.softtek_preview.api_application.service.PiramideVendasService;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -51,7 +53,7 @@ public class Project {
     private BigDecimal valorContrato;
 
     @Embedded
-    private PiramideVendas piramideVendas;
+    private PiramideVenda piramideVenda;
 
     @Embedded
     private CustoVenda custoVenda;
@@ -73,4 +75,6 @@ public class Project {
 
     @Column(name = "ativo", nullable = false)
     private boolean ativo;
+
+
 }

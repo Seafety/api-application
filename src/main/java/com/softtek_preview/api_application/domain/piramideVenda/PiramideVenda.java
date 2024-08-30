@@ -7,25 +7,30 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Embeddable
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PiramideVendas {
+public class PiramideVenda {
 
     @Column(name = "expert_piramide", nullable = false)
-    private double expert;
+    private BigDecimal expert;
 
     @Column(name = "senior_piramide", nullable = false)
-    private double senior;
+    private BigDecimal senior;
 
     @Column(name = "pleno_piramide", nullable = false)
-    private double pleno;
+    private BigDecimal pleno;
 
     @Column(name = "junior_piramide", nullable = false)
-    private double junior;
+    private BigDecimal junior;
 
     @Column(name = "estagiario_piramide", nullable = false)
-    private double estagiario;
+    private BigDecimal estagiario;
+
+    @Column(name = "gestao_piramide", nullable = false)
+    private BigDecimal gestao;
 }
