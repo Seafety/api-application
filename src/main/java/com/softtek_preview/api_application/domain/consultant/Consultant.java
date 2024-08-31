@@ -1,6 +1,7 @@
 package com.softtek_preview.api_application.domain.consultant;
 
 import com.softtek_preview.api_application.domain.cost.Cost;
+import com.softtek_preview.api_application.domain.project.Project;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +10,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Table(name = "consultants")
@@ -26,6 +28,9 @@ public class Consultant {
 
     @Column(name = "nome", nullable = false)
     private String nome;
+
+    @ManyToMany(mappedBy = "owners")
+    private Set<Project> projects;
 
     @Column(name = "codigo_at", nullable = false)
     private String codigoAt;

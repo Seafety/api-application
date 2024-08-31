@@ -1,9 +1,9 @@
 package com.softtek_preview.api_application.domain.project;
 
+
 import com.softtek_preview.api_application.domain.custoVenda.CustoVenda;
 import com.softtek_preview.api_application.domain.piramideVenda.PiramideVenda;
-import com.softtek_preview.api_application.service.CustoVendaService;
-import com.softtek_preview.api_application.service.PiramideVendasService;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,6 +13,7 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Table(name = "project")
@@ -32,6 +33,15 @@ public class Project {
 
     @Column(name = "descricao", nullable = false)
     private String descricao;
+
+    @ManyToMany
+    @JoinTable(
+            name = "project_owners",
+            joinColumns = @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "consultant_id")
+    )
+    @Column(name = "owners")
+    private Set<UUID> owners;
 
     @Column(name = "tipo_contrato", nullable = false)
     private String tipoContrato;

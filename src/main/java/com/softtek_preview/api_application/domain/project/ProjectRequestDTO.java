@@ -9,6 +9,8 @@ import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 
 public record ProjectRequestDTO(
@@ -19,6 +21,8 @@ public record ProjectRequestDTO(
         @NotNull(message = "A descrição é obrigatória")
         @Size(min = 1, max = 255, message = "A descrição deve ter entre 1 e 255 caracteres")
         String descricao,
+
+        Set<UUID> owners,
 
         @NotNull(message = "O tipo de contrato é obrigatório")
         String tipoContrato,

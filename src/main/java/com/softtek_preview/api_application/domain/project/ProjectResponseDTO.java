@@ -7,12 +7,14 @@ import com.softtek_preview.api_application.domain.piramideVenda.PiramideVendaDTO
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public record ProjectResponseDTO(
         UUID id,
         String projeto,
         String descricao,
+        Set<UUID> owners,
         String tipoContrato,
         List<String> modulo,
         List<String> tipoDemanda,

@@ -25,6 +25,9 @@ public class ProjectService {
     private PiramideVendasService piramideVendasService;
 
     public ProjectResponseDTO createProject(ProjectRequestDTO projectRequestDTO) {
+        if (projectRequestDTO.owners().size() > 3) {
+            throw new IllegalArgumentException("A project can have a maximum of 3 owners.");
+        }
         Project project = convertToEntity(projectRequestDTO);
         Project savedProject = projectRepository.save(project);
         return convertToDTO(savedProject);
@@ -40,6 +43,9 @@ public class ProjectService {
     }
 
     public ProjectResponseDTO updateProject(UUID id, ProjectRequestDTO projectRequestDTO) {
+        if (projectRequestDTO.owners().size() > 3) {
+            throw new IllegalArgumentException("A project can have a maximum of 3 owners.");
+        }
         Project project = projectRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Project not found"));
         updateFromDTO(project, projectRequestDTO);
         Project updatedProject = projectRepository.save(project);
@@ -54,6 +60,7 @@ public class ProjectService {
     private void updateFromDTO(Project project, ProjectRequestDTO dto) {
         project.setProjeto(dto.projeto());
         project.setDescricao(dto.descricao());
+        project.setOwners(dto.owners());
         project.setTipoContrato(dto.tipoContrato());
         project.setModulo(dto.modulo());
         project.setTipoDemanda(dto.tipoDemanda());
@@ -72,6 +79,7 @@ public class ProjectService {
         Project project = new Project();
         project.setProjeto(dto.projeto());
         project.setDescricao(dto.descricao());
+        project.setOwners(dto.owners());
         project.setTipoContrato(dto.tipoContrato());
         project.setModulo(dto.modulo());
         project.setTipoDemanda(dto.tipoDemanda());
@@ -93,6 +101,7 @@ public class ProjectService {
                 project.getId(),
                 project.getProjeto(),
                 project.getDescricao(),
+                project.getOwners(),
                 project.getTipoContrato(),
                 project.getModulo(),
                 project.getTipoDemanda(),
