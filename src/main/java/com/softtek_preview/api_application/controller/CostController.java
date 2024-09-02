@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/cost")
@@ -32,5 +33,17 @@ public class CostController {
     public ResponseEntity<List<CostResponseDTO>> getAllCosts(){
         List<CostResponseDTO> costs =  costService.getAllCosts();
         return ResponseEntity.ok(costs);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CostResponseDTO> updateCost(@PathVariable String codigo_at, @RequestBody CostRequestDTO costRequestDTO){
+        CostResponseDTO cost = costService.updateCost(codigo_at, costResquestDTO);
+        return ResponseEntity.ok(cost);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<CostResponseDTO> deleteCost(@PathVariable String codigo_at){
+        CostResponseDTO cost = costService.deleteCost(codigo_at);
+        return ResponseEntity.noContent().build();
     }
 }

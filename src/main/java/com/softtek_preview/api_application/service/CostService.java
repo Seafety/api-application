@@ -32,6 +32,28 @@ public class CostService {
         return costRepository.findAll().stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
+    public CostResponseDTO updateCost(String codigoAt, CostRequestDTO costRequestDTO) {
+        Cost cost = costRepository.findById(codigoAt)
+                .orElseThrow(() -> new ResourceNotFoundException("Cost not found"));
+        updateFromDTO(cost, costRequestDTO);
+        Cost updatedCost = costRepository.save(cost);
+        return convertToDTO(updatedCost);
+    }
+
+    public CostResponseDTO deleteCost(String codigoAt) {
+        Cost cost = costRepository.findById(codigoAt)
+                .orElseThrow(() -> new ResourceNotFoundException("Cost not found"));
+
+        costRepository.delete(cost);
+        return convertToDTO(cost);
+    }
+    private void updateFromDTO(Cost cost, CostRequestDTO costRequestDTO) {
+        cost.setCategoria(costRequestDTO.categoria());
+        cost.setExercicio(costRequestDTO.exercicio());
+        cost.setPeriodo(costRequestDTO.periodo());
+        cost.setValorAt(costRequestDTO.valorAt());
+    }
+
     private Cost convertToEntity(CostRequestDTO costRequestDTO) {
         Cost cost = new Cost();
         cost.setCategoria(costRequestDTO.categoria());
@@ -51,4 +73,5 @@ public class CostService {
                 cost.getValorAt()
         );
     }
+
 }
