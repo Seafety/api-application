@@ -1,14 +1,18 @@
 package com.softtek_preview.api_application.service;
 
+import com.softtek_preview.api_application.domain.consultant.Consultant;
 import com.softtek_preview.api_application.domain.project.Project;
 import com.softtek_preview.api_application.domain.project.ProjectRequestDTO;
 import com.softtek_preview.api_application.domain.project.ProjectResponseDTO;
 import com.softtek_preview.api_application.exceptions.ResourceNotFoundException;
+import com.softtek_preview.api_application.repositories.ConsultantRepository;
 import com.softtek_preview.api_application.repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -23,6 +27,9 @@ public class ProjectService {
 
     @Autowired
     private PiramideVendasService piramideVendasService;
+
+    @Autowired
+    private ConsultantRepository consultantRepository;
 
     public ProjectResponseDTO createProject(ProjectRequestDTO projectRequestDTO) {
         if (projectRequestDTO.owners().size() > 3) {
@@ -60,7 +67,8 @@ public class ProjectService {
     private void updateFromDTO(Project project, ProjectRequestDTO dto) {
         project.setProjeto(dto.projeto());
         project.setDescricao(dto.descricao());
-        project.setOwners(dto.owners());
+        Set<Consultant> owners = new HashSet<>(consultantRepository.findByIdIn(dto.owners()));
+        project.setOwners(owners);
         project.setTipoContrato(dto.tipoContrato());
         project.setModulo(dto.modulo());
         project.setTipoDemanda(dto.tipoDemanda());
@@ -79,7 +87,8 @@ public class ProjectService {
         Project project = new Project();
         project.setProjeto(dto.projeto());
         project.setDescricao(dto.descricao());
-        project.setOwners(dto.owners());
+        Set<Consultant> owners = new HashSet<>(consultantRepository.findByIdIn(dto.owners()));
+        project.setOwners(owners);
         project.setTipoContrato(dto.tipoContrato());
         project.setModulo(dto.modulo());
         project.setTipoDemanda(dto.tipoDemanda());
@@ -95,13 +104,16 @@ public class ProjectService {
         project.setAtivo(dto.ativo());
         return project;
     }
-
     private ProjectResponseDTO convertToDTO(Project project) {
+        Set<UUID> ownerIds = project.getOwners().stream()
+                .map(Consultant::getId)
+                .collect(Collectors.toSet());
+
         return new ProjectResponseDTO(
                 project.getId(),
                 project.getProjeto(),
                 project.getDescricao(),
-                project.getOwners(),
+                ownerIds,
                 project.getTipoContrato(),
                 project.getModulo(),
                 project.getTipoDemanda(),

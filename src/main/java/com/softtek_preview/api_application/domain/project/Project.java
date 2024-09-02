@@ -1,6 +1,7 @@
 package com.softtek_preview.api_application.domain.project;
 
 
+import com.softtek_preview.api_application.domain.consultant.Consultant;
 import com.softtek_preview.api_application.domain.custoVenda.CustoVenda;
 import com.softtek_preview.api_application.domain.piramideVenda.PiramideVenda;
 
@@ -12,6 +13,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -40,8 +42,7 @@ public class Project {
             joinColumns = @JoinColumn(name = "project_id"),
             inverseJoinColumns = @JoinColumn(name = "consultant_id")
     )
-    @Column(name = "owners")
-    private Set<UUID> owners;
+    private Set<Consultant> owners = new HashSet<>();
 
     @Column(name = "tipo_contrato", nullable = false)
     private String tipoContrato;
