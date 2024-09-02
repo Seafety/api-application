@@ -23,9 +23,15 @@ public class CostController {
         return ResponseEntity.ok(cost);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CostResponseDTO> getCostById(@PathVariable String id){
-        CostResponseDTO cost = costService.getCostById(id);
+    @PostMapping("/load")
+    public ResponseEntity<String> loadCosts(@RequestBody List<CostRequestDTO> costList) {
+        costService.loadCosts(costList);
+        return ResponseEntity.ok("Costs loaded successfully");
+    }
+
+    @GetMapping("/{codigo_at}")
+    public ResponseEntity<CostResponseDTO> getCostById(@PathVariable String codigo_at){
+        CostResponseDTO cost = costService.getCostById(codigo_at);
         return ResponseEntity.ok(cost);
     }
 
@@ -35,15 +41,15 @@ public class CostController {
         return ResponseEntity.ok(costs);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{codigo_at}")
     public ResponseEntity<CostResponseDTO> updateCost(@PathVariable String codigo_at, @RequestBody CostRequestDTO costRequestDTO){
         CostResponseDTO cost = costService.updateCost(codigo_at, costRequestDTO);
         return ResponseEntity.ok(cost);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<CostResponseDTO> deleteCost(@PathVariable String codigo_at){
-        CostResponseDTO cost = costService.deleteCost(codigo_at);
+    @DeleteMapping("/{codigo_at}")
+    public ResponseEntity<Void> deleteCost(@PathVariable String codigo_at){
+        costService.deleteCost(codigo_at);
         return ResponseEntity.noContent().build();
     }
 }

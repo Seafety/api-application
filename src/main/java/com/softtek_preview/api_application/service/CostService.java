@@ -23,6 +23,12 @@ public class CostService {
         return null;
     }
 
+    public void loadCosts(List<CostRequestDTO> costList) {
+        for (CostRequestDTO costRequestDTO : costList) {
+            Cost cost = convertToEntity(costRequestDTO);
+            costRepository.save(cost);
+        }
+    }
     public CostResponseDTO getCostById(String id){
         Cost cost = costRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Cost not found"));
         return convertToDTO(cost);
@@ -40,12 +46,11 @@ public class CostService {
         return convertToDTO(updatedCost);
     }
 
-    public CostResponseDTO deleteCost(String codigoAt) {
+    public void deleteCost(String codigoAt) {
         Cost cost = costRepository.findById(codigoAt)
                 .orElseThrow(() -> new ResourceNotFoundException("Cost not found"));
 
         costRepository.delete(cost);
-        return convertToDTO(cost);
     }
     private void updateFromDTO(Cost cost, CostRequestDTO costRequestDTO) {
         cost.setCategoria(costRequestDTO.categoria());
@@ -58,7 +63,7 @@ public class CostService {
         Cost cost = new Cost();
         cost.setCategoria(costRequestDTO.categoria());
         cost.setExercicio(costRequestDTO.exercicio());
-        cost.setPeriodo(costRequestDTO.exercicio());
+        cost.setPeriodo(costRequestDTO.periodo());
         cost.setValorAt(costRequestDTO.valorAt());
         cost.setCodigoAt(costRequestDTO.codigoAt());
         return cost;
