@@ -37,7 +37,7 @@ public class CostController {
 
     @PutMapping("/{id}")
     public ResponseEntity<CostResponseDTO> updateCost(@PathVariable String codigo_at, @RequestBody CostRequestDTO costRequestDTO){
-        CostResponseDTO cost = costService.updateCost(codigo_at, costResquestDTO);
+        CostResponseDTO cost = costService.updateCost(codigo_at, costRequestDTO);
         return ResponseEntity.ok(cost);
     }
 
