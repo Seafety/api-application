@@ -4,6 +4,7 @@ import com.softtek_preview.api_application.domain.project.ProjectRequestDTO;
 import com.softtek_preview.api_application.domain.project.ProjectResponseDTO;
 import com.softtek_preview.api_application.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,12 @@ public class ProjectController {
     public ResponseEntity<ProjectResponseDTO> createProject(@RequestBody ProjectRequestDTO projectRequestDTO) {
         ProjectResponseDTO project = projectService.createProject(projectRequestDTO);
         return ResponseEntity.ok(project);
+    }
+    
+    @PostMapping("/bulk")
+    public ResponseEntity<List<ProjectResponseDTO>> createProjectsInBulk(@RequestBody List<ProjectRequestDTO> projectRequestDTOs) {
+        List<ProjectResponseDTO> createdProjects = projectService.createProjectsInBulk(projectRequestDTOs);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdProjects);
     }
 
     @GetMapping("/{id}")
