@@ -1,12 +1,12 @@
 package com.softtek_preview.api_application.domain.consultant;
 
-import com.softtek_preview.api_application.domain.cost.CostRequestDTO;
+import com.softtek_preview.api_application.domain.cost.CostResponseDTO;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
-public record ComsultantRequestDTO(
+public record ConsultantResponseDTO(
         UUID id,
         String nome,
         String codigoAt,
@@ -16,6 +16,6 @@ public record ComsultantRequestDTO(
         LocalDate ausenciaIni,
         LocalDate ausenciaFin,
         String ausenciaTipo,
-        CostRequestDTO cost
+        CostResponseDTO cost
 ) {
 }

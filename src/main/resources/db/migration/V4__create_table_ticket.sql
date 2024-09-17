@@ -7,7 +7,7 @@ CREATE TABLE ticket (
     modulo_chamado VARCHAR(255) NOT NULL,
     tipo_chamado VARCHAR(50) NOT NULL,
     status_chamado VARCHAR(50) NOT NULL,
-    consultant_id UUID REFERENCES consultant(id) ON DELETE CASCADE,
+    consultant_id UUID REFERENCES consultants(id) ON DELETE CASCADE,
     modulo_consultor VARCHAR(255) NOT NULL,
     exercicio INT NOT NULL,
     periodo INT NOT NULL,

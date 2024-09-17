@@ -59,7 +59,7 @@ public class CostService {
         cost.setValorAt(costRequestDTO.valorAt());
     }
 
-    private Cost convertToEntity(CostRequestDTO costRequestDTO) {
+    Cost convertToEntity(CostRequestDTO costRequestDTO) {
         Cost cost = new Cost();
         cost.setCategoria(costRequestDTO.categoria());
         cost.setExercicio(costRequestDTO.exercicio());
@@ -69,7 +69,7 @@ public class CostService {
         return cost;
     }
 
-    private CostResponseDTO convertToDTO(Cost cost) {
+    CostResponseDTO convertToDTO(Cost cost) {
         return new CostResponseDTO(
                 cost.getExercicio(),
                 cost.getPeriodo(),
