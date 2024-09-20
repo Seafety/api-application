@@ -1,5 +1,5 @@
 
-CREATE TABLE consultant (
+CREATE TABLE consultants (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     codigo_at VARCHAR(255) NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE consultant (
 );
 
 CREATE TABLE consultant_especialidade (
-    consultant_id UUID REFERENCES consultant(id) ON DELETE CASCADE,
+    consultant_id UUID REFERENCES consultants(id) ON DELETE CASCADE,
     especialidade VARCHAR(255) NOT NULL
 );
 

@@ -57,7 +57,6 @@ public record ProjectRequestDTO(
         @NotNull(message = "A data de fim do contrato é obrigatória")
         LocalDate fimContrato,
 
-        @NotNull(message = "O status é obrigatório")
         String status,
 
         @NotNull(message = "O campo ativo é obrigatório")

@@ -17,6 +17,7 @@ public class PiramideVendasService {
         piramideVenda.setPleno(dto.pleno());
         piramideVenda.setJunior(dto.junior());
         piramideVenda.setEstagiario(dto.estagiario());
+        piramideVenda.setGestao(dto.gestao());
         return piramideVenda;
     }
 

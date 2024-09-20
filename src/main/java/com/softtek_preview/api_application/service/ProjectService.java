@@ -32,13 +32,25 @@ public class ProjectService {
     private ConsultantRepository consultantRepository;
 
     public ProjectResponseDTO createProject(ProjectRequestDTO projectRequestDTO) {
-        if (projectRequestDTO.owners().size() > 3) {
+        if (projectRequestDTO.owners() != null && projectRequestDTO.owners().size() > 3) {
             throw new IllegalArgumentException("A project can have a maximum of 3 owners.");
         }
         Project project = convertToEntity(projectRequestDTO);
         Project savedProject = projectRepository.save(project);
         return convertToDTO(savedProject);
     }
+
+    public List<ProjectResponseDTO> createProjectsInBulk(List<ProjectRequestDTO> projectRequestDTOs) {
+        List<Project> projects = projectRequestDTOs.stream()
+                .map(this::convertToEntity)
+                .collect(Collectors.toList());
+        List<Project> savedProjects = projectRepository.saveAll(projects);
+
+        return savedProjects.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
 
     public ProjectResponseDTO getProjectById(UUID id) {
         Project project = projectRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Project not found"));
@@ -50,7 +62,7 @@ public class ProjectService {
     }
 
     public ProjectResponseDTO updateProject(UUID id, ProjectRequestDTO projectRequestDTO) {
-        if (projectRequestDTO.owners().size() > 3) {
+        if (projectRequestDTO.owners() != null && projectRequestDTO.owners().size() > 3) {
             throw new IllegalArgumentException("A project can have a maximum of 3 owners.");
         }
         Project project = projectRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Project not found"));
